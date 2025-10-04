@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "report": "npx playwright show-report",
+    "pretty": "npx prettier . --write"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.55.1",
-    "@types/node": "^24.6.1"
+    "@types/node": "^24.6.1",
+    "prettier": "^3.6.2"
   }
 }
