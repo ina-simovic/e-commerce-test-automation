@@ -8,7 +8,7 @@ test.describe('Valid login with different users', () => {
   });
   test('valid login', async ({ page }) => {
     const loginPage = new LoginPage(page);
-    await loginPage.logInWith({
+    await loginPage.login({
       username: 'standard_user',
       password: 'secret_sauce',
     });

@@ -1,7 +1,7 @@
 import { type Locator, type Page } from '@playwright/test';
 
 export class LoginPage {
-  readonly page: Page;
+  private readonly page: Page;
   readonly header: Locator;
   readonly usernameField: Locator;
   readonly passwordField: Locator;
@@ -9,7 +9,7 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.header = page.locator('div.login_logo', { hasText: 'Swag Labs' });
+    this.header = page.locator('.login_logo');
     this.usernameField = page.locator('#user-name');
     this.passwordField = page.locator('#password');
     this.loginButton = page.locator('#login-button');
@@ -23,9 +23,9 @@ export class LoginPage {
     await this.passwordField.fill(password);
   }
 
-  async logInWith(options: { username: string; password: string }) {
-    await this.usernameField.fill(options.username);
-    await this.passwordField.fill(options.password);
+  async login(options: { username: string; password: string }) {
+    await this.setUsername(options.username);
+    await this.setPassword(options.password);
     await this.loginButton.click();
   }
 }
