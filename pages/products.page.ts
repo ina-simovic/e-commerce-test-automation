@@ -1,7 +1,7 @@
 import { Page, Locator } from '@playwright/test';
 
 export class ProductsPage {
-  readonly page: Page;
+  private readonly page: Page;
   readonly title: Locator;
 
   constructor(page: Page) {

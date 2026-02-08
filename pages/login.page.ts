@@ -6,6 +6,8 @@ export class LoginPage {
   readonly usernameField: Locator;
   readonly passwordField: Locator;
   readonly loginButton: Locator;
+  readonly errorMessage: Locator;
+  readonly closeErrorMessageButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -13,6 +15,8 @@ export class LoginPage {
     this.usernameField = page.locator('#user-name');
     this.passwordField = page.locator('#password');
     this.loginButton = page.locator('#login-button');
+    this.errorMessage = page.locator('[data-test="error"]');
+    this.closeErrorMessageButton = page.locator('[data-test="error-button"]');
   }
 
   async setUsername(username: string): Promise<void> {

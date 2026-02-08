@@ -38,7 +38,7 @@ test.describe('Content of "Login" page is displayed correctly', () => {
 
   test('login button is displayed correctly', async () => {
     await expect(loginPage.loginButton).toBeVisible();
-    await expect(loginPage.loginButton).toHaveAttribute('value', 'Login');
+    await expect(loginPage.loginButton).toHaveValue('Login');
     await expect(loginPage.loginButton).toBeEnabled();
   });
 });
