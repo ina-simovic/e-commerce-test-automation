@@ -9,6 +9,7 @@ test.describe('Valid login with different users', () => {
     await page.goto('/');
     loginPage = new LoginPage(page);
   });
+
   test('valid login', async ({ page }) => {
     await loginPage.login({
       username: 'standard_user',
@@ -18,6 +19,7 @@ test.describe('Valid login with different users', () => {
     await expect(page).toHaveURL('/inventory.html');
     const productsPage = new ProductsPage(page);
     await expect(productsPage.title).toHaveText('Products');
+    await expect(productsPage.navBar.menuButton).toBeVisible();
   });
 
   test('login with locked user', async ({ page }) => {
