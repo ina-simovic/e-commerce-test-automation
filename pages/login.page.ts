@@ -12,11 +12,11 @@ export class LoginPage {
   constructor(page: Page) {
     this.page = page;
     this.header = page.locator('.login_logo');
-    this.usernameField = page.locator('#user-name');
-    this.passwordField = page.locator('#password');
-    this.loginButton = page.locator('#login-button');
-    this.errorMessage = page.locator('[data-test="error"]');
-    this.closeErrorMessageButton = page.locator('[data-test="error-button"]');
+    this.usernameField = page.getByTestId('username');
+    this.passwordField = page.getByTestId('password');
+    this.loginButton = page.getByTestId('login-button');
+    this.errorMessage = page.getByTestId('error');
+    this.closeErrorMessageButton = page.getByTestId('error-button');
   }
 
   async setUsername(username: string): Promise<void> {

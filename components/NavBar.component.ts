@@ -1,4 +1,3 @@
-// components/navbar.component.ts
 import { type Locator, type Page } from '@playwright/test';
 
 export class NavBar {
@@ -12,11 +11,9 @@ export class NavBar {
   constructor(page: Page) {
     this.container = page.locator('#menu_button_container');
     this.menuButton = this.container.locator('#react-burger-menu-btn');
-    this.allItemsLink = this.container.locator(
-      '[data-test=inventory-sidebar-link]',
-    );
-    this.aboutLink = this.container.locator('[data-test=about-sidebar-link]');
-    this.logoutLink = this.container.locator('[data-test=logout-sidebar-link]');
+    this.allItemsLink = this.container.getByTestId('inventory-sidebar-link');
+    this.aboutLink = this.container.getByTestId('about-sidebar-link');
+    this.logoutLink = this.container.getByTestId('logout-sidebar-link');
     this.closeMenuButton = this.container.locator('#react-burger-cross-btn');
   }
 

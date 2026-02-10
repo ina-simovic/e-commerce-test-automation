@@ -14,3 +14,10 @@
    - performance_glitch_user
    - error_user
    - visual_user
+
+3. Navbar is displayed correctly
+   - menu button is displayed and opens navbar menu
+   - "All items" link is displayed
+   - "About" link is displayed
+   - "Logout" link is displayed
+   - X navbar button closes navbar
