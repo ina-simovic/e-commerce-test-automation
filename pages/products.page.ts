@@ -32,4 +32,10 @@ export class ProductsPage {
 
     return new Product(productContainer);
   }
+
+  async findAllProducts(): Promise<Product[]> {
+    return (await this.page.getByTestId('inventory-item').all()).map(
+      (productContainer) => new Product(productContainer),
+    );
+  }
 }
