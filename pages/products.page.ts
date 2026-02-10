@@ -6,11 +6,13 @@ export class ProductsPage {
   private readonly page: Page;
   readonly navBar: NavBar;
   readonly title: Locator;
+  readonly sortDropdown: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.navBar = new NavBar(page);
     this.title = page.locator('#header_container .title');
+    this.sortDropdown = page.getByTestId('product-sort-container');
   }
 
   findProductByName(name: string): Product {
@@ -37,5 +39,9 @@ export class ProductsPage {
     return (await this.page.getByTestId('inventory-item').all()).map(
       (productContainer) => new Product(productContainer),
     );
+  }
+
+  async getSelectedSortLabel(): Promise<string | null> {
+    return this.sortDropdown.locator('option:checked').textContent();
   }
 }

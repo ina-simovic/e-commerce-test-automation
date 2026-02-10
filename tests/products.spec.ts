@@ -53,5 +53,37 @@ test.describe('Product functionality', () => {
   });
 
   // TODO
-  test.skip('product sort by: name ASC', async () => {});
+  test('product sort by - name ASC - default', async () => {
+    await expect(productsPage.sortDropdown).toBeVisible();
+    await expect(productsPage.sortDropdown).toHaveValue('az');
+    expect(await productsPage.getSelectedSortLabel()).toBe('Name (A to Z)');
+  });
+
+  // TODO
+  test('product sort by - name DSC', async () => {
+    await productsPage.sortDropdown.selectOption('Name (Z to A)');
+    await expect(productsPage.sortDropdown).toBeVisible();
+    await expect(productsPage.sortDropdown).toHaveValue('za');
+    expect(await productsPage.getSelectedSortLabel()).toBe('Name (Z to A)');
+  });
+
+  // TODO
+  test('product sort by - price ASC', async () => {
+    await productsPage.sortDropdown.selectOption('Price (low to high)');
+    await expect(productsPage.sortDropdown).toBeVisible();
+    await expect(productsPage.sortDropdown).toHaveValue('lohi');
+    expect(await productsPage.getSelectedSortLabel()).toBe(
+      'Price (low to high)',
+    );
+  });
+
+  // TODO
+  test('product sort by - price DSC', async () => {
+    await productsPage.sortDropdown.selectOption('Price (high to low)');
+    await expect(productsPage.sortDropdown).toBeVisible();
+    await expect(productsPage.sortDropdown).toHaveValue('hilo');
+    expect(await productsPage.getSelectedSortLabel()).toBe(
+      'Price (high to low)',
+    );
+  });
 });
