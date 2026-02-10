@@ -51,4 +51,7 @@ test.describe('Product functionality', () => {
     await expect(product.price).toHaveText('$7.99');
     await expect(product.addToCartButton).toBeVisible();
   });
+
+  // TODO
+  test.skip('product sort by: name ASC', async () => {});
 });

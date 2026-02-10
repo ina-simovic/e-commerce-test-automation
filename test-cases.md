@@ -21,3 +21,18 @@
    - "About" link is displayed
    - "Logout" link is displayed
    - X navbar button closes navbar
+
+4. Product spec:
+   - product count is 6
+   - product item is displayed correctly:
+     - image
+     - name
+     - desc
+     - price
+     - "Add to cart" button
+   - default product sort is "Name (A to Z)"
+   - product sort:
+     - by name ASC
+     - by name DSC
+     - by price ASC
+     - by price DSC
