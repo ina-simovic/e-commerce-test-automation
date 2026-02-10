@@ -1,6 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { NavBar } from '../components/navbar.component';
-import { Product } from '../components/Product.component';
+import { Product } from '../components/product.component';
 
 export class ProductsPage {
   private readonly page: Page;
