@@ -5,6 +5,14 @@ import { ProductsPage } from '../pages/products.page';
 test.describe('Product functionality', () => {
   let loginPage: LoginPage;
   let productsPage: ProductsPage;
+  const expectedProductNamesWithPrices = {
+    'Sauce Labs Backpack': '$29.99',
+    'Sauce Labs Bike Light': '$9.99',
+    'Sauce Labs Bolt T-Shirt': '$15.99',
+    'Sauce Labs Fleece Jacket': '$49.99',
+    'Sauce Labs Onesie': '$7.99',
+    'Test.allTheThings() T-Shirt (Red)': '$15.99',
+  };
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
@@ -52,22 +60,39 @@ test.describe('Product functionality', () => {
     await expect(product.addToCartButton).toBeVisible();
   });
 
-  // TODO
   test('product sort by - name ASC - default', async () => {
     await expect(productsPage.sortDropdown).toBeVisible();
     await expect(productsPage.sortDropdown).toHaveValue('az');
     expect(await productsPage.getSelectedSortLabel()).toBe('Name (A to Z)');
+
+    const allProducts = await productsPage.findAllProducts();
+    const actualProductNames = await Promise.all(
+      allProducts.map((product) => product.name.textContent()),
+    );
+    expect(actualProductNames).toEqual(
+      Object.keys(expectedProductNamesWithPrices).toSorted((a, b) =>
+        a.localeCompare(b),
+      ),
+    );
   });
 
-  // TODO
   test('product sort by - name DSC', async () => {
     await productsPage.sortDropdown.selectOption('Name (Z to A)');
     await expect(productsPage.sortDropdown).toBeVisible();
     await expect(productsPage.sortDropdown).toHaveValue('za');
     expect(await productsPage.getSelectedSortLabel()).toBe('Name (Z to A)');
+
+    const allProducts = await productsPage.findAllProducts();
+    const actualProductNames = await Promise.all(
+      allProducts.map((product) => product.name.textContent()),
+    );
+    expect(actualProductNames).toEqual(
+      Object.keys(expectedProductNamesWithPrices).toSorted((a, b) =>
+        b.localeCompare(a),
+      ),
+    );
   });
 
-  // TODO
   test('product sort by - price ASC', async () => {
     await productsPage.sortDropdown.selectOption('Price (low to high)');
     await expect(productsPage.sortDropdown).toBeVisible();
@@ -75,15 +100,50 @@ test.describe('Product functionality', () => {
     expect(await productsPage.getSelectedSortLabel()).toBe(
       'Price (low to high)',
     );
+
+    // actual
+    const allProducts = await productsPage.findAllProducts();
+    const actualProductPrices = await Promise.all(
+      allProducts.map((product) => product.price.textContent()),
+    );
+    const actualProductPricesAsNumbers = actualProductPrices.map((price) =>
+      Number(price?.replace('$', '')),
+    );
+
+    // expected
+    const expectedProductPricesAsNumbers = Object.values(
+      expectedProductNamesWithPrices,
+    ).map((price) => Number(price.replace('$', '')));
+
+    expect(actualProductPricesAsNumbers).toEqual(
+      expectedProductPricesAsNumbers.toSorted((a, b) => a - b),
+    );
   });
 
-  // TODO
   test('product sort by - price DSC', async () => {
     await productsPage.sortDropdown.selectOption('Price (high to low)');
     await expect(productsPage.sortDropdown).toBeVisible();
     await expect(productsPage.sortDropdown).toHaveValue('hilo');
     expect(await productsPage.getSelectedSortLabel()).toBe(
       'Price (high to low)',
+    );
+
+    // actual
+    const allProducts = await productsPage.findAllProducts();
+    const actualProductPrices = await Promise.all(
+      allProducts.map((product) => product.price.textContent()),
+    );
+    const actualProductPricesAsNumbers = actualProductPrices.map((price) =>
+      Number(price?.replace('$', '')),
+    );
+
+    // expected
+    const expectedProductPricesAsNumbers = Object.values(
+      expectedProductNamesWithPrices,
+    ).map((price) => Number(price.replace('$', '')));
+
+    expect(actualProductPricesAsNumbers).toEqual(
+      expectedProductPricesAsNumbers.toSorted((a, b) => b - a),
     );
   });
 });

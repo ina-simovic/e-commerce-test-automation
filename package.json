@@ -7,7 +7,8 @@
     "test": "npx playwright test",
     "test:headed": "npx playwright test --headed",
     "report": "npx playwright show-report",
-    "pretty": "npx prettier . --write"
+    "pretty": "npx prettier . --write",
+    "test:headed:single-worker": "npx playwright test --headed --workers 1"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +16,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.2.2",
+    "@types/node": "^25.2.3",
     "prettier": "^3.8.1"
   }
 }
