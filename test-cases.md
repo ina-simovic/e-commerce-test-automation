@@ -22,7 +22,7 @@
    - "Logout" link is displayed
    - X navbar button closes navbar
 
-4. Product spec:
+4. Products page spec:
    - product count is 6
    - product item is displayed correctly:
      - image
@@ -36,3 +36,15 @@
      - by name DSC
      - by price ASC
      - by price DSC
+   - "Add to cart" button functionality
+
+5. Product page spec:
+   - product item is displayed correctly:
+     - "Back to products" button
+     - image
+     - name
+     - desc
+     - price
+     - "Add to cart" button
+   - "Back to products" button functionality
+   - "Add to cart" button functionality
