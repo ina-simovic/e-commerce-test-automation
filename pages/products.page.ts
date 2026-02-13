@@ -1,18 +1,18 @@
 import { Page, Locator } from '@playwright/test';
-import { NavBar } from '../components/navbar.component';
+import { Header } from '../components/header/header.component';
 import { Product } from '../components/product.component';
 import { Footer } from '../components/footer.component';
 
 export class ProductsPage {
   private readonly page: Page;
-  readonly navBar: NavBar;
+  readonly header: Header;
   readonly title: Locator;
   readonly sortDropdown: Locator;
   readonly footer: Footer;
 
   constructor(page: Page) {
     this.page = page;
-    this.navBar = new NavBar(page);
+    this.header = new Header(page);
     this.title = page.locator('#header_container .title');
     this.sortDropdown = page.getByTestId('product-sort-container');
     this.footer = new Footer(page);

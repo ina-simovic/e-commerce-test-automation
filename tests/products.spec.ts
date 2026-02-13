@@ -27,6 +27,14 @@ test.describe('Product functionality', () => {
     productsPage = new ProductsPage(page);
   });
 
+  test('header is displayed correctly', async () => {
+    await expect(productsPage.header.navBar.menuButton).toBeVisible();
+    await expect(productsPage.header.navBar.aboutLink).not.toBeVisible();
+    await expect(productsPage.header.title).toBeVisible();
+    await expect(productsPage.header.title).toHaveText('Swag Labs');
+    await expect(productsPage.header.cartButton).toBeVisible();
+  });
+
   test('check product count', async () => {
     const allProducts = await productsPage.findAllProducts();
     expect(allProducts.length).toBe(6);

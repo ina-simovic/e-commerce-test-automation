@@ -23,6 +23,7 @@
    - X navbar button closes navbar
 
 4. Products page spec:
+   - header displayed correctly
    - product count is 6
    - product item is displayed correctly:
      - image
@@ -40,6 +41,7 @@
    - footer displayed correctly
 
 5. Product page spec:
+   - header displayed correctly
    - product item is displayed correctly:
      - "Back to products" button
      - image

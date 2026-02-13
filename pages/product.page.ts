@@ -1,10 +1,10 @@
 import { Page, Locator } from '@playwright/test';
-import { NavBar } from '../components/navbar.component';
+import { Header } from '../components/header/header.component';
 import { Footer } from '../components/footer.component';
 
 export class ProductPage {
   private readonly page: Page;
-  readonly navBar: NavBar;
+  readonly header: Header;
   readonly backToProductsButton: Locator;
   readonly image: Locator;
   readonly name: Locator;
@@ -15,7 +15,7 @@ export class ProductPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.navBar = new NavBar(page);
+    this.header = new Header(page);
     this.backToProductsButton = page.getByTestId('back-to-products');
     this.image = page.locator('.inventory_details_img');
     this.name = page.getByTestId('inventory-item-name');

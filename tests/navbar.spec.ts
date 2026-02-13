@@ -17,23 +17,28 @@ test.describe('Navbar functionality', () => {
     });
 
     const productsPage = new ProductsPage(page);
-    await expect(productsPage.navBar.menuButton).toBeVisible();
-    await expect(productsPage.navBar.allItemsLink).not.toBeVisible();
-    await expect(productsPage.navBar.aboutLink).not.toBeVisible();
-    await expect(productsPage.navBar.logoutLink).not.toBeVisible();
-    await expect(productsPage.navBar.closeMenuButton).not.toBeVisible();
+    await expect(productsPage.header.navBar.menuButton).toBeVisible();
+    await expect(productsPage.header.navBar.allItemsLink).not.toBeVisible();
+    await expect(productsPage.header.navBar.aboutLink).not.toBeVisible();
+    await expect(productsPage.header.navBar.logoutLink).not.toBeVisible();
+    await expect(productsPage.header.navBar.closeMenuButton).not.toBeVisible();
 
-    await productsPage.navBar.open();
-    await expect(productsPage.navBar.allItemsLink).toBeVisible();
-    await expect(productsPage.navBar.aboutLink).toBeVisible();
-    await expect(productsPage.navBar.logoutLink).toBeVisible();
-    await expect(productsPage.navBar.closeMenuButton).toBeVisible();
+    await productsPage.header.navBar.open();
+    await expect(productsPage.header.navBar.allItemsLink).toBeVisible();
+    await expect(productsPage.header.navBar.aboutLink).toBeVisible();
+    await expect(productsPage.header.navBar.logoutLink).toBeVisible();
+    await expect(productsPage.header.navBar.closeMenuButton).toBeVisible();
 
-    await productsPage.navBar.close();
-    await expect(productsPage.navBar.menuButton).toBeVisible();
-    await expect(productsPage.navBar.allItemsLink).not.toBeVisible();
-    await expect(productsPage.navBar.aboutLink).not.toBeVisible();
-    await expect(productsPage.navBar.logoutLink).not.toBeVisible();
-    await expect(productsPage.navBar.closeMenuButton).not.toBeVisible();
+    await productsPage.header.navBar.close();
+    await expect(productsPage.header.navBar.menuButton).toBeVisible();
+    await expect(productsPage.header.navBar.allItemsLink).not.toBeVisible();
+    await expect(productsPage.header.navBar.aboutLink).not.toBeVisible();
+    await expect(productsPage.header.navBar.logoutLink).not.toBeVisible();
+    await expect(productsPage.header.navBar.closeMenuButton).not.toBeVisible();
+
+    await expect(productsPage.header.title).toBeVisible();
+    await expect(productsPage.header.title).toHaveText('Swag Labs');
+
+    await expect(productsPage.header.cartButton).toBeVisible();
   });
 });

@@ -19,7 +19,7 @@ test.describe('Valid login with different users', () => {
     await expect(page).toHaveURL('/inventory.html');
     const productsPage = new ProductsPage(page);
     await expect(productsPage.title).toHaveText('Products');
-    await expect(productsPage.navBar.menuButton).toBeVisible();
+    await expect(productsPage.header.navBar.menuButton).toBeVisible();
   });
 
   test('login with locked user', async ({ page }) => {

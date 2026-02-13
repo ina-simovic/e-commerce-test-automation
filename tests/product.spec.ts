@@ -21,6 +21,18 @@ test.describe('Product functionality', () => {
     productsPage = new ProductsPage(page);
   });
 
+  test('header is displayed correctly', async ({ page }) => {
+    const product = productsPage.findProductByName('Sauce Labs Bike Light');
+    await product.name.click();
+
+    productPage = new ProductPage(page);
+    await expect(productPage.header.navBar.menuButton).toBeVisible();
+    await expect(productPage.header.navBar.aboutLink).not.toBeVisible();
+    await expect(productPage.header.title).toBeVisible();
+    await expect(productPage.header.title).toHaveText('Swag Labs');
+    await expect(productPage.header.cartButton).toBeVisible();
+  });
+
   test('product is displayed correctly', async ({ page }) => {
     const expectedProductDetails = {
       name: 'Sauce Labs Bike Light',
