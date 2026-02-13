@@ -43,8 +43,4 @@ export class ProductsPage {
       (productContainer) => new Product(productContainer),
     );
   }
-
-  async getSelectedSortLabel(): Promise<string | null> {
-    return this.sortDropdown.locator('option:checked').textContent();
-  }
 }

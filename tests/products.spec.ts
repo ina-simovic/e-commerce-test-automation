@@ -71,7 +71,9 @@ test.describe('Product functionality', () => {
   test('product sort by - name ASC - default', async () => {
     await expect(productsPage.sortDropdown).toBeVisible();
     await expect(productsPage.sortDropdown).toHaveValue('az');
-    expect(await productsPage.getSelectedSortLabel()).toBe('Name (A to Z)');
+    await expect(
+      productsPage.sortDropdown.locator('option:checked'),
+    ).toHaveText('Name (A to Z)');
 
     const allProducts = await productsPage.findAllProducts();
     const actualProductNames = await Promise.all(
@@ -88,7 +90,9 @@ test.describe('Product functionality', () => {
     await productsPage.sortDropdown.selectOption('Name (Z to A)');
     await expect(productsPage.sortDropdown).toBeVisible();
     await expect(productsPage.sortDropdown).toHaveValue('za');
-    expect(await productsPage.getSelectedSortLabel()).toBe('Name (Z to A)');
+    await expect(
+      productsPage.sortDropdown.locator('option:checked'),
+    ).toHaveText('Name (Z to A)');
 
     const allProducts = await productsPage.findAllProducts();
     const actualProductNames = await Promise.all(
@@ -105,9 +109,9 @@ test.describe('Product functionality', () => {
     await productsPage.sortDropdown.selectOption('Price (low to high)');
     await expect(productsPage.sortDropdown).toBeVisible();
     await expect(productsPage.sortDropdown).toHaveValue('lohi');
-    expect(await productsPage.getSelectedSortLabel()).toBe(
-      'Price (low to high)',
-    );
+    await expect(
+      productsPage.sortDropdown.locator('option:checked'),
+    ).toHaveText('Price (low to high)');
 
     // actual
     const allProducts = await productsPage.findAllProducts();
@@ -132,9 +136,9 @@ test.describe('Product functionality', () => {
     await productsPage.sortDropdown.selectOption('Price (high to low)');
     await expect(productsPage.sortDropdown).toBeVisible();
     await expect(productsPage.sortDropdown).toHaveValue('hilo');
-    expect(await productsPage.getSelectedSortLabel()).toBe(
-      'Price (high to low)',
-    );
+    await expect(
+      productsPage.sortDropdown.locator('option:checked'),
+    ).toHaveText('Price (high to low)');
 
     // actual
     const allProducts = await productsPage.findAllProducts();
