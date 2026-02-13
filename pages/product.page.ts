@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { NavBar } from '../components/navbar.component';
+import { Footer } from '../components/footer.component';
 
 export class ProductPage {
   private readonly page: Page;
@@ -10,6 +11,7 @@ export class ProductPage {
   readonly description: Locator;
   readonly price: Locator;
   readonly addToCartButton: Locator;
+  readonly footer: Footer;
 
   constructor(page: Page) {
     this.page = page;
@@ -20,5 +22,6 @@ export class ProductPage {
     this.description = page.getByTestId('inventory-item-desc');
     this.price = page.getByTestId('inventory-item-price');
     this.addToCartButton = page.getByTestId('add-to-cart');
+    this.footer = new Footer(page);
   }
 }

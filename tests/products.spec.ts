@@ -146,4 +146,29 @@ test.describe('Product functionality', () => {
       expectedProductPricesAsNumbers.toSorted((a, b) => b - a),
     );
   });
+
+  test('footer is displayed correctly', async () => {
+    await expect(productsPage.footer.twitterLink).toBeVisible();
+    await expect(productsPage.footer.twitterLink).toHaveAttribute(
+      'href',
+      'https://twitter.com/saucelabs',
+    );
+
+    await expect(productsPage.footer.facebookLink).toBeVisible();
+    await expect(productsPage.footer.facebookLink).toHaveAttribute(
+      'href',
+      'https://www.facebook.com/saucelabs',
+    );
+
+    await expect(productsPage.footer.linkedinLink).toBeVisible();
+    await expect(productsPage.footer.linkedinLink).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/company/sauce-labs/',
+    );
+
+    await expect(productsPage.footer.copyright).toBeVisible();
+    await expect(productsPage.footer.copyright).toHaveText(
+      `© ${new Date().getFullYear()} Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy`,
+    );
+  });
 });

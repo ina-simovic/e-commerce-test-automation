@@ -47,4 +47,33 @@ test.describe('Product functionality', () => {
     expect(productPage.addToCartButton).toBeVisible();
     expect(productPage.addToCartButton).toHaveText('Add to cart');
   });
+
+  test('footer is displayed correctly', async ({ page }) => {
+    const product = productsPage.findProductByName('Sauce Labs Bike Light');
+    await product.name.click();
+
+    productPage = new ProductPage(page);
+    await expect(productPage.footer.twitterLink).toBeVisible();
+    await expect(productPage.footer.twitterLink).toHaveAttribute(
+      'href',
+      'https://twitter.com/saucelabs',
+    );
+
+    await expect(productPage.footer.facebookLink).toBeVisible();
+    await expect(productPage.footer.facebookLink).toHaveAttribute(
+      'href',
+      'https://www.facebook.com/saucelabs',
+    );
+
+    await expect(productPage.footer.linkedinLink).toBeVisible();
+    await expect(productPage.footer.linkedinLink).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/company/sauce-labs/',
+    );
+
+    await expect(productPage.footer.copyright).toBeVisible();
+    await expect(productPage.footer.copyright).toHaveText(
+      `© ${new Date().getFullYear()} Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy`,
+    );
+  });
 });

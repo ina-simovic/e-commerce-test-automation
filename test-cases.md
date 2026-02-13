@@ -37,6 +37,7 @@
      - by price ASC
      - by price DSC
    - "Add to cart" button functionality
+   - footer displayed correctly
 
 5. Product page spec:
    - product item is displayed correctly:
@@ -48,3 +49,4 @@
      - "Add to cart" button
    - "Back to products" button functionality
    - "Add to cart" button functionality
+   - footer displayed correctly
