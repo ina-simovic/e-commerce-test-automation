@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
 import { ProductsPage } from '../pages/products.page';
+import users from '../data/users.json';
 
 test.describe('Product functionality', () => {
   let loginPage: LoginPage;
@@ -19,8 +20,8 @@ test.describe('Product functionality', () => {
     loginPage = new LoginPage(page);
 
     await loginPage.login({
-      username: 'standard_user',
-      password: 'secret_sauce',
+      username: users.standard.username,
+      password: users.standard.password,
     });
 
     await expect(page).toHaveURL('/inventory.html');
@@ -33,6 +34,7 @@ test.describe('Product functionality', () => {
     await expect(productsPage.header.title).toBeVisible();
     await expect(productsPage.header.title).toHaveText('Swag Labs');
     await expect(productsPage.header.cartButton).toBeVisible();
+    await expect(productsPage.header.cartBadge).not.toBeVisible();
   });
 
   test('check product count', async () => {

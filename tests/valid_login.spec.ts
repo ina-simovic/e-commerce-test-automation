@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
 import { ProductsPage } from '../pages/products.page';
+import users from '../data/users.json';
 
 test.describe('Valid login with different users', () => {
   let loginPage: LoginPage;
@@ -12,8 +13,8 @@ test.describe('Valid login with different users', () => {
 
   test('valid login', async ({ page }) => {
     await loginPage.login({
-      username: 'standard_user',
-      password: 'secret_sauce',
+      username: users.standard.username,
+      password: users.standard.password,
     });
 
     await expect(page).toHaveURL('/inventory.html');
@@ -25,8 +26,8 @@ test.describe('Valid login with different users', () => {
   test('login with locked user', async ({ page }) => {
     await expect(loginPage.errorMessage).not.toBeVisible();
     await loginPage.login({
-      username: 'locked_out_user',
-      password: 'secret_sauce',
+      username: users.lockedOut.username,
+      password: users.lockedOut.password,
     });
 
     await expect(page).toHaveURL('/');
