@@ -6,6 +6,7 @@ export class Product {
   readonly description: Locator;
   readonly price: Locator;
   readonly addToCartButton: Locator;
+  readonly removeButton: Locator;
 
   constructor(container: Locator) {
     this.image = container.locator('img.inventory_item_img');
@@ -14,6 +15,9 @@ export class Product {
     this.price = container.getByTestId('inventory-item-price');
     this.addToCartButton = container.getByRole('button', {
       name: 'Add to cart',
+    });
+    this.removeButton = container.getByRole('button', {
+      name: 'Remove',
     });
   }
 }

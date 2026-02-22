@@ -1,6 +1,7 @@
 import { Page, Locator } from '@playwright/test';
 import { Header } from '../components/header/header.component';
 import { Footer } from '../components/footer.component';
+import { CartProduct } from '../components/cart-product.component';
 
 export class CartPage {
   private readonly page: Page;
@@ -21,5 +22,23 @@ export class CartPage {
     this.continueShoppingButton = page.getByTestId('continue-shopping');
     this.checkoutButton = page.getByTestId('checkout');
     this.footer = new Footer(page);
+  }
+
+  findCartProductByName(name: string): CartProduct {
+    const cartProductContainer = this.page
+      .getByTestId('inventory-item')
+      .filter({
+        has: this.page
+          .getByTestId('inventory-item-name')
+          .filter({ hasText: name }),
+      });
+
+    return new CartProduct(cartProductContainer);
+  }
+
+  async findAllCartProducts(): Promise<CartProduct[]> {
+    return (await this.page.getByTestId('inventory-item').all()).map(
+      (cartProductContainer) => new CartProduct(cartProductContainer),
+    );
   }
 }
