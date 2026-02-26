@@ -3,6 +3,7 @@ import { LoginPage } from '../pages/login.page';
 import { ProductsPage } from '../pages/products.page';
 import { CartPage } from '../pages/cart.page';
 import users from '../data/users.json';
+import products from '../data/products.json';
 
 test.describe('Cart functionality', () => {
   let loginPage: LoginPage;
@@ -150,49 +151,55 @@ test.describe('Cart functionality', () => {
     await expect(cartPage.header.cartBadge).toHaveText('3');
 
     // verify product1 in cart
-    const cartProduct1 = cartPage.findCartProductByName('Sauce Labs Backpack');
+    const expectedCartProduct1Data = products['Sauce Labs Backpack'];
+    const cartProduct1 = cartPage.findCartProductByName(
+      expectedCartProduct1Data.name,
+    );
     await expect(cartProduct1.quantity).toBeVisible();
     await expect(cartProduct1.quantity).toHaveText('1');
     await expect(cartProduct1.name).toBeVisible();
-    await expect(cartProduct1.name).toHaveText('Sauce Labs Backpack');
+    await expect(cartProduct1.name).toHaveText(expectedCartProduct1Data.name);
     await expect(cartProduct1.description).toBeVisible();
     await expect(cartProduct1.description).toHaveText(
-      'carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.',
+      expectedCartProduct1Data.description,
     );
     await expect(cartProduct1.price).toBeVisible();
-    await expect(cartProduct1.price).toHaveText('$29.99');
+    await expect(cartProduct1.price).toHaveText(expectedCartProduct1Data.price);
     await expect(cartProduct1.removeButton).toBeVisible();
 
     // verify product2 in cart
+    const expectedCartProduct2Data = products['Sauce Labs Bike Light'];
     const cartProduct2 = cartPage.findCartProductByName(
-      'Sauce Labs Bike Light',
+      expectedCartProduct2Data.name,
     );
     await expect(cartProduct2.quantity).toBeVisible();
     await expect(cartProduct2.quantity).toHaveText('1');
     await expect(cartProduct2.name).toBeVisible();
-    await expect(cartProduct2.name).toHaveText('Sauce Labs Bike Light');
+    await expect(cartProduct2.name).toHaveText(expectedCartProduct2Data.name);
     await expect(cartProduct2.description).toBeVisible();
     await expect(cartProduct2.description).toHaveText(
-      "A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.",
+      expectedCartProduct2Data.description,
     );
     await expect(cartProduct2.price).toBeVisible();
-    await expect(cartProduct2.price).toHaveText('$9.99');
+    await expect(cartProduct2.price).toHaveText(expectedCartProduct2Data.price);
     await expect(cartProduct2.removeButton).toBeVisible();
 
     // verify product3 in cart
+    const expectedCartProduct3Data = products['Sauce Labs Bolt T-Shirt'];
     const cartProduct3 = cartPage.findCartProductByName(
-      'Sauce Labs Bolt T-Shirt',
+      expectedCartProduct3Data.name,
     );
+
     await expect(cartProduct3.quantity).toBeVisible();
     await expect(cartProduct3.quantity).toHaveText('1');
     await expect(cartProduct3.name).toBeVisible();
-    await expect(cartProduct3.name).toHaveText('Sauce Labs Bolt T-Shirt');
+    await expect(cartProduct3.name).toHaveText(expectedCartProduct3Data.name);
     await expect(cartProduct3.description).toBeVisible();
     await expect(cartProduct3.description).toHaveText(
-      'Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt.',
+      expectedCartProduct3Data.description,
     );
     await expect(cartProduct3.price).toBeVisible();
-    await expect(cartProduct3.price).toHaveText('$15.99');
+    await expect(cartProduct3.price).toHaveText(expectedCartProduct3Data.price);
     await expect(cartProduct3.removeButton).toBeVisible();
   });
 });

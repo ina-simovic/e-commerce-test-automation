@@ -3,6 +3,7 @@ import { LoginPage } from '../pages/login.page';
 import { ProductsPage } from '../pages/products.page';
 import { ProductPage } from '../pages/product.page';
 import users from '../data/users.json';
+import products from '../data/products.json';
 
 test.describe('Product functionality', () => {
   let loginPage: LoginPage;
@@ -36,12 +37,7 @@ test.describe('Product functionality', () => {
   });
 
   test('product is displayed correctly', async ({ page }) => {
-    const expectedProductDetails = {
-      name: 'Sauce Labs Bike Light',
-      description:
-        "A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.",
-      price: '$9.99',
-    };
+    const expectedProductDetails = products['Sauce Labs Backpack'];
 
     const product = productsPage.findProductByName(expectedProductDetails.name);
     await product.name.click();

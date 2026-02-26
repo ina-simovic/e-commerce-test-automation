@@ -2,18 +2,17 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
 import { ProductsPage } from '../pages/products.page';
 import users from '../data/users.json';
+import products from '../data/products.json';
 
 test.describe('Product functionality', () => {
   let loginPage: LoginPage;
   let productsPage: ProductsPage;
-  const expectedProductNamesWithPrices = {
-    'Sauce Labs Backpack': '$29.99',
-    'Sauce Labs Bike Light': '$9.99',
-    'Sauce Labs Bolt T-Shirt': '$15.99',
-    'Sauce Labs Fleece Jacket': '$49.99',
-    'Sauce Labs Onesie': '$7.99',
-    'Test.allTheThings() T-Shirt (Red)': '$15.99',
-  };
+
+  const expectedProductNamesWithPrices: Record<string, string> = {};
+
+  for (const productData of Object.values(products)) {
+    expectedProductNamesWithPrices[productData.name] = productData.price;
+  }
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
