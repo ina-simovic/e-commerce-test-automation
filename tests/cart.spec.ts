@@ -81,7 +81,7 @@ test.describe('Cart functionality', () => {
     );
   });
 
-  test('product is displayed correctly in cart', async ({ page }) => {
+  test('single product is displayed correctly in cart', async ({ page }) => {
     await expect(productsPage.header.cartBadge).not.toBeVisible();
 
     const product = productsPage.findProductByName('Sauce Labs Backpack');

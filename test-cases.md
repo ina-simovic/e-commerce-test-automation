@@ -52,3 +52,10 @@
    - "Back to products" button functionality
    - "Add to cart" button functionality
    - footer displayed correctly
+
+6. Cart page spec:
+   - header displayed correctly
+   - empty cart is displayed correctly
+   - single product is displayed correctly in cart
+   - multiple products are displayed correctly in cart
+   - footer displayed correctly
