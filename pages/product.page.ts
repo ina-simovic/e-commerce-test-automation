@@ -11,6 +11,7 @@ export class ProductPage {
   readonly description: Locator;
   readonly price: Locator;
   readonly addToCartButton: Locator;
+  readonly removeButton: Locator;
   readonly footer: Footer;
 
   constructor(page: Page) {
@@ -22,6 +23,7 @@ export class ProductPage {
     this.description = page.getByTestId('inventory-item-desc');
     this.price = page.getByTestId('inventory-item-price');
     this.addToCartButton = page.getByTestId('add-to-cart');
+    this.removeButton = page.getByTestId('remove');
     this.footer = new Footer(page);
   }
 }

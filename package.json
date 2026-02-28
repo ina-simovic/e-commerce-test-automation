@@ -7,6 +7,7 @@
     "clean": "npx rimraf ./allure-results/ && npx rimraf ./allure-report/",
     "test": "npm run clean && npx playwright test",
     "test:headed": "npm run clean && npx playwright test --headed",
+    "test@cart": "npm run clean && npx playwright test --grep @cart",
     "pretty": "npx prettier . --write",
     "test:headed:single-worker": "npm run clean && npx playwright test --headed --workers 1",
     "report:generate": "npx allure generate",
@@ -18,10 +19,10 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.2.3",
-    "allure": "^3.1.0",
-    "allure-playwright": "^3.4.5",
+    "@types/node": "^25.3.2",
+    "allure": "^3.3.1",
+    "allure-playwright": "^3.5.0",
     "prettier": "^3.8.1",
-    "rimraf": "^6.1.2"
+    "rimraf": "^6.1.3"
   }
 }

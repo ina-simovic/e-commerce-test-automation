@@ -42,30 +42,34 @@ test.describe('Product functionality', () => {
   });
 
   test('product is displayed after login - find by name', async () => {
-    const product = productsPage.findProductByName('Sauce Labs Backpack');
+    const expectedProductData = products['Sauce Labs Backpack'];
+    const product = productsPage.findProductByName(expectedProductData.name);
+
     await expect(product.image).toBeVisible();
     await expect(product.name).toBeVisible();
-    await expect(product.name).toHaveText('Sauce Labs Backpack');
+    await expect(product.name).toHaveText(expectedProductData.name);
     await expect(product.description).toBeVisible();
     await expect(product.description).toHaveText(
-      'carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.',
+      expectedProductData.description,
     );
     await expect(product.price).toBeVisible();
-    await expect(product.price).toHaveText('$29.99');
+    await expect(product.price).toHaveText(expectedProductData.price);
     await expect(product.addToCartButton).toBeVisible();
   });
 
   test('product is displayed after login - find by price', async () => {
-    const product = productsPage.findProductByPrice('$7.99');
+    const expectedProductData = products['Sauce Labs Onesie'];
+    const product = productsPage.findProductByPrice(expectedProductData.price);
+
     await expect(product.image).toBeVisible();
     await expect(product.name).toBeVisible();
-    await expect(product.name).toHaveText('Sauce Labs Onesie');
+    await expect(product.name).toHaveText(expectedProductData.name);
     await expect(product.description).toBeVisible();
     await expect(product.description).toHaveText(
-      "Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel.",
+      expectedProductData.description,
     );
     await expect(product.price).toBeVisible();
-    await expect(product.price).toHaveText('$7.99');
+    await expect(product.price).toHaveText(expectedProductData.price);
     await expect(product.addToCartButton).toBeVisible();
   });
 

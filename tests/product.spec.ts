@@ -37,9 +37,9 @@ test.describe('Product functionality', () => {
   });
 
   test('product is displayed correctly', async ({ page }) => {
-    const expectedProductDetails = products['Sauce Labs Backpack'];
+    const expectedProductData = products['Sauce Labs Backpack'];
 
-    const product = productsPage.findProductByName(expectedProductDetails.name);
+    const product = productsPage.findProductByName(expectedProductData.name);
     await product.name.click();
 
     productPage = new ProductPage(page);
@@ -47,15 +47,14 @@ test.describe('Product functionality', () => {
     expect(productPage.backToProductsButton).toHaveText('Back to products');
     expect(productPage.image).toBeVisible();
     expect(productPage.name).toBeVisible();
-    expect(productPage.name).toHaveText(expectedProductDetails.name);
+    expect(productPage.name).toHaveText(expectedProductData.name);
     expect(productPage.description).toBeVisible();
-    expect(productPage.description).toHaveText(
-      expectedProductDetails.description,
-    );
+    expect(productPage.description).toHaveText(expectedProductData.description);
     expect(productPage.price).toBeVisible();
-    expect(productPage.price).toHaveText(expectedProductDetails.price);
+    expect(productPage.price).toHaveText(expectedProductData.price);
     expect(productPage.addToCartButton).toBeVisible();
     expect(productPage.addToCartButton).toHaveText('Add to cart');
+    expect(productPage.removeButton).not.toBeVisible();
   });
 
   test('footer is displayed correctly', async ({ page }) => {
