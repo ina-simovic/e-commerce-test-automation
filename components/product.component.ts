@@ -8,15 +8,15 @@ export class Product {
   readonly addToCartButton: Locator;
   readonly removeButton: Locator;
 
-  constructor(container: Locator) {
-    this.image = container.locator('img.inventory_item_img');
-    this.name = container.getByTestId('inventory-item-name');
-    this.description = container.getByTestId('inventory-item-desc');
-    this.price = container.getByTestId('inventory-item-price');
-    this.addToCartButton = container.getByRole('button', {
+  constructor(productContainer: Locator) {
+    this.image = productContainer.locator('img.inventory_item_img');
+    this.name = productContainer.getByTestId('inventory-item-name');
+    this.description = productContainer.getByTestId('inventory-item-desc');
+    this.price = productContainer.getByTestId('inventory-item-price');
+    this.addToCartButton = productContainer.getByRole('button', {
       name: 'Add to cart',
     });
-    this.removeButton = container.getByRole('button', {
+    this.removeButton = productContainer.getByRole('button', {
       name: 'Remove',
     });
   }
