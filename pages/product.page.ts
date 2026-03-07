@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { Header } from '../components/header/header.component';
 import { Footer } from '../components/footer.component';
 
@@ -25,5 +25,9 @@ export class ProductPage {
     this.addToCartButton = page.getByTestId('add-to-cart');
     this.removeButton = page.getByTestId('remove');
     this.footer = new Footer(page);
+  }
+
+  async shouldBeDisplayed(): Promise<void> {
+    await expect(this.page).toHaveURL(/\/inventory-item\.html\?id=\d+$/);
   }
 }

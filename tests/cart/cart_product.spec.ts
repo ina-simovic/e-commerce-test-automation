@@ -35,6 +35,7 @@ test.describe('Cart functionality @cart', () => {
     await expect(product.removeButton).not.toBeVisible();
 
     productPage = new ProductPage(page);
+    await productPage.shouldBeDisplayed();
     await productPage.addToCartButton.click();
 
     await expect(productPage.addToCartButton).not.toBeVisible();

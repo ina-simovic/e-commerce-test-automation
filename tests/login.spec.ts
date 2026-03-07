@@ -10,6 +10,7 @@ test.describe('Content of "Login" page is displayed correctly', () => {
   });
 
   test('page title "Swag Labs"', async ({ page }) => {
+    await loginPage.shouldBeDisplayed();
     await expect(page).toHaveTitle('Swag Labs');
   });
 

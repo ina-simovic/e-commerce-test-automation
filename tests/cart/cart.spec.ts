@@ -3,6 +3,7 @@ import { LoginPage } from '../../pages/login.page';
 import { ProductsPage } from '../../pages/products.page';
 import { CartPage } from '../../pages/cart.page';
 import users from '../../data/users.json';
+import products from '../../data/products.json';
 
 test.describe('Cart functionality @cart', () => {
   let loginPage: LoginPage;
@@ -51,6 +52,20 @@ test.describe('Cart functionality @cart', () => {
     expect((await cartPage.findAllCartProducts()).length).toBe(0);
     await expect(cartPage.checkoutButton).toBeVisible();
     await expect(cartPage.checkoutButton).toHaveText('Checkout');
+  });
+
+  test('continue shopping button works correctly', async ({ page }) => {
+    const expectedProductData = products['Sauce Labs Backpack'];
+    const product = productsPage.findProductByName(expectedProductData.name);
+    await product.addToCartButton.click();
+
+    await productsPage.header.cartButton.click();
+    cartPage = new CartPage(page);
+    await cartPage.continueShoppingButton.click();
+
+    await productsPage.shouldBeDisplayed();
+    await expect(product.removeButton).toBeVisible();
+    await expect(productsPage.header.cartBadge).toHaveText('1');
   });
 
   test('footer is displayed correctly', async ({ page }) => {

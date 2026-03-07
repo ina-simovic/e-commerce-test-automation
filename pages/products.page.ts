@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { Header } from '../components/header/header.component';
 import { Product } from '../components/product.component';
 import { Footer } from '../components/footer.component';
@@ -16,6 +16,10 @@ export class ProductsPage {
     this.title = page.locator('#header_container .title');
     this.sortDropdown = page.getByTestId('product-sort-container');
     this.footer = new Footer(page);
+  }
+
+  async shouldBeDisplayed(): Promise<void> {
+    await expect(this.page).toHaveURL('/inventory.html');
   }
 
   findProductByName(name: string): Product {

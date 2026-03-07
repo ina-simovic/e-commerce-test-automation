@@ -1,4 +1,4 @@
-import { type Locator, type Page } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
 
 export class LoginPage {
   private readonly page: Page;
@@ -17,6 +17,10 @@ export class LoginPage {
     this.loginButton = page.getByTestId('login-button');
     this.errorMessage = page.getByTestId('error');
     this.closeErrorMessageButton = page.getByTestId('error-button');
+  }
+
+  async shouldBeDisplayed(): Promise<void> {
+    await expect(this.page).toHaveURL('/');
   }
 
   async setUsername(username: string): Promise<void> {

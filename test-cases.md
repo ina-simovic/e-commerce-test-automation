@@ -60,4 +60,5 @@
    - product is added to cart and removed from product details page
    - single product can be added and removed from cart
    - single product is displayed correctly in cart
+   - continue shopping works correctly
    - footer displayed correctly
