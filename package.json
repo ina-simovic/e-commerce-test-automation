@@ -18,11 +18,11 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
-    "@types/node": "^25.3.2",
-    "allure": "^3.3.1",
-    "allure-playwright": "^3.5.0",
-    "prettier": "^3.8.1",
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0",
+    "allure": "^3.6.0",
+    "allure-playwright": "^3.7.1",
+    "prettier": "^3.8.3",
     "rimraf": "^6.1.3"
   }
 }
